@@ -1,0 +1,5 @@
+crud\CrudApplication.class
+crud\controllers\EmployeeController.class
+crud\model\Employee.class
+crud\services\EmployeeService.class
+crud\EmployeeRepository.class
