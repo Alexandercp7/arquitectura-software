@@ -9,19 +9,37 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Servicio encargado de  gestionar las operaciones (CRUD) de los empleados.
+ */
 @Service
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private HashMap<String, Object> datos = new HashMap<>();
+
+    /**
+     * Constructor para inyectar el repositorio de empleados.
+     * @param employeeRepository Repositorio de empleados.
+     */
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository){
+    public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-    public List<Employee> getEmployees(){
+
+    /**
+     * Obtiene la lista de todos los empleados.
+     * @return Lista de empleados.
+     */
+    public List<Employee> getEmployees() {
         return this.employeeRepository.findAll();
     }
 
+
+    /**
+     * Añade un nuevo empleado.
+     * @param employee Objeto empleado a añadir.
+     * @return Respuesta HTTP con el resultado de la operación.
+     */
     public ResponseEntity<Object> newEmployee(Employee employee) {
         Optional<Employee> res = this.employeeRepository.findEmployeeByName(employee.getName());
         if(res.isPresent()){
@@ -42,7 +60,11 @@ public class EmployeeService {
 
     }
 
-
+    /**
+     * Actualiza un empleado existente.
+     * @param employee Objeto empleado con los datos actualizados.
+     * @return Respuesta HTTP con el resultado de la operación.
+     */
     public ResponseEntity<Object> updateEmployee(Employee employee) {
         Optional<Employee> res = this.employeeRepository.findEmployeeByName(employee.getName());
 
@@ -63,7 +85,11 @@ public class EmployeeService {
         );
 
     }
-
+    /**
+     * Elimina un empleado por su ID.
+     * @param id ID del empleado a eliminar.
+     * @return Respuesta HTTP con el resultado de la operación.
+     */
     public ResponseEntity<Object> deleteEmployee(Long id) {
         if(this.employeeRepository.existsById(id)){
             this.employeeRepository.deleteById(id);

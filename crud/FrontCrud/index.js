@@ -52,8 +52,10 @@ async function saveEmployee() {
         name: nameBox.value,
         address: address.value,
         email: email.value,
-        phoneNumber: phoneNumber.value
+        phoneNumber: parseInt(phoneNumber.value)
     };
+    console.log(typeof employee.phoneNumber);
+    console.log(employee.phoneNumber)
     await fetch('http://localhost:8080/api/v1/employees', {
         method: 'POST',
         headers: {
@@ -74,7 +76,7 @@ async function panUpdateEmployee(id) {
     nameBox.value = employee.name;
     address.value = employee.address;
     email.value = employee.email;
-    phoneNumber.value = employee.phoneNumber;
+    phoneNumber.value = parseInt(employee.phoneNumber);
 }
 
 async function updateEmployee() {
@@ -102,6 +104,7 @@ async function deleteEmployee(id) {
             'Content-Type': 'application/json'
         }
     });
+    await reloadTable();
 }
 
 let employeesList = [];
