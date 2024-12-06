@@ -7,10 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-
+/**
+ * Este controlador proporciona endpoints para las operaciones CRUD sobre empleados.
+ * Maneja las solicitudes HTTP y delega la lógica de negocio al EmployeeService.
+ */
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping(path="api/v1/employees")
+
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -33,6 +37,7 @@ public class EmployeeController {
     public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee){
         return this.employeeService.updateEmployee(employee);
     }
+
     @DeleteMapping(path ="{employeeId}")
     public ResponseEntity<Object> deleteEmployee(@PathVariable("employeeId") Long id){
         return this.employeeService.deleteEmployee(id);
