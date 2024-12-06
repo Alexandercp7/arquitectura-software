@@ -25,7 +25,7 @@ public class Employee {
     @NotNull
     private String name;
     /**
-     * Crea una columna en la tabla para el email del empleado..
+     * Crea una columna en la tabla para el email del empleado.
      */
     @Email
     private String email;
@@ -33,7 +33,7 @@ public class Employee {
     private Long phoneNumber;
 
     /**
-     * Constructor vacío.
+     * Constructor vacío,  necesario para JPA.
      */
     public Employee(){
 

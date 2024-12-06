@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controlador REST para gestionar empleados.
+ * Este controlador proporciona endpoints para las operaciones CRUD sobre empleados.
+ * Maneja las solicitudes HTTP y delega la lógica de negocio al EmployeeService.
  */
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
@@ -36,6 +37,7 @@ public class EmployeeController {
     public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee){
         return this.employeeService.updateEmployee(employee);
     }
+
     @DeleteMapping(path ="{employeeId}")
     public ResponseEntity<Object> deleteEmployee(@PathVariable("employeeId") Long id){
         return this.employeeService.deleteEmployee(id);
